@@ -1,6 +1,6 @@
 <?php
 
-function get_products($limit = null, $category_id = 0)
+function get_products($limit = null, $category_id = 0): array
 {
     global $db;
     $category_id = (int) $category_id;
@@ -30,7 +30,7 @@ function get_product($id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function get_categories()
+function get_categories(): array
 {
     global $db;
     $stmt = $db->query('SELECT * FROM categories');
@@ -38,7 +38,7 @@ function get_categories()
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function add_to_cart($product_id, $quantity = 1)
+function add_to_cart($product_id, $quantity = 1): bool
 {
     if (! is_logged_in()) {
         return false;
@@ -141,17 +141,17 @@ function create_order($order_data)
     }
 }
 
-function is_logged_in()
+function is_logged_in(): bool
 {
     return isset($_SESSION['user_id']);
 }
 
-function is_admin()
+function is_admin(): bool
 {
     return isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'admin';
 }
 
-function login_user($email, $password)
+function login_user($email, $password): bool
 {
     global $db;
 
@@ -170,7 +170,7 @@ function login_user($email, $password)
     return false;
 }
 
-function register_user($data)
+function register_user($data): bool
 {
     global $db;
 
@@ -188,7 +188,7 @@ function register_user($data)
     }
 }
 
-function add_category($name)
+function add_category($name): bool
 {
     global $db;
     $stmt = $db->prepare('INSERT INTO categories (name) VALUES (?)');
@@ -196,7 +196,7 @@ function add_category($name)
     return $stmt->execute([$name]);
 }
 
-function update_category($id, $name)
+function update_category($id, $name): bool
 {
     global $db;
     $stmt = $db->prepare('UPDATE categories SET name = ? WHERE id = ?');
@@ -204,7 +204,7 @@ function update_category($id, $name)
     return $stmt->execute([$name, $id]);
 }
 
-function delete_category($id)
+function delete_category($id): bool
 {
     global $db;
     $stmt = $db->prepare('DELETE FROM categories WHERE id = ?');
@@ -212,7 +212,7 @@ function delete_category($id)
     return $stmt->execute([$id]);
 }
 
-function add_product($name, $category_id, $description, $price, $image)
+function add_product($name, $category_id, $description, $price, $image): bool
 {
     global $db;
     $stmt = $db->prepare('INSERT INTO products (name, category_id, description, price, image) 
@@ -221,7 +221,7 @@ function add_product($name, $category_id, $description, $price, $image)
     return $stmt->execute([$name, $category_id, $description, $price, $image]);
 }
 
-function update_product($id, $name, $category_id, $description, $price, $image)
+function update_product($id, $name, $category_id, $description, $price, $image): bool
 {
     global $db;
     $stmt = $db->prepare('UPDATE products SET name = ?, category_id = ?, description = ?, 
@@ -230,7 +230,7 @@ function update_product($id, $name, $category_id, $description, $price, $image)
     return $stmt->execute([$name, $category_id, $description, $price, $image, $id]);
 }
 
-function delete_product($id)
+function delete_product($id): bool
 {
     global $db;
     $stmt = $db->prepare('DELETE FROM products WHERE id = ?');
@@ -238,7 +238,7 @@ function delete_product($id)
     return $stmt->execute([$id]);
 }
 
-function get_all_orders()
+function get_all_orders(): array
 {
     global $db;
     $stmt = $db->query('SELECT o.*, u.email FROM orders o 
@@ -247,7 +247,7 @@ function get_all_orders()
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function update_order_status($order_id, $status)
+function update_order_status($order_id, $status): bool
 {
     global $db;
     $stmt = $db->prepare('UPDATE orders SET status = ? WHERE id = ?');
@@ -255,7 +255,7 @@ function update_order_status($order_id, $status)
     return $stmt->execute([$status, $order_id]);
 }
 
-function get_products_by_category($category_id)
+function get_products_by_category($category_id): array
 {
     global $db;
     $stmt = $db->prepare('SELECT p.*, c.name as category_name 
@@ -286,7 +286,7 @@ function validate_user_data($data): array
     return $errors;
 }
 
-function get_status_color($status)
+function get_status_color($status): string
 {
     switch ($status) {
         case 'pending':
@@ -350,7 +350,7 @@ function get_category($id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function get_user_orders($user_id)
+function get_user_orders($user_id): array
 {
     global $db;
 
@@ -360,7 +360,7 @@ function get_user_orders($user_id)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function get_order_items($order_id)
+function get_order_items($order_id): array
 {
     global $db;
     $stmt = $db->prepare('
@@ -383,7 +383,7 @@ function get_category_products_count($category_id)
     return $stmt->fetchColumn();
 }
 
-function search_products($query, $category_id = 0)
+function search_products($query, $category_id = 0): array
 {
     global $db;
     $category_id = (int) $category_id;
@@ -405,7 +405,7 @@ function search_products($query, $category_id = 0)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function search_categories($query)
+function search_categories($query): array
 {
     global $db;
     $search = "%{$query}%";
@@ -415,7 +415,7 @@ function search_categories($query)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function search_orders($query)
+function search_orders($query): array
 {
     global $db;
     $search = "%{$query}%";
@@ -430,7 +430,7 @@ function search_orders($query)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function search_user_orders($user_id, $query)
+function search_user_orders($user_id, $query): array
 {
     global $db;
     $search = "%{$query}%";
@@ -442,7 +442,7 @@ function search_user_orders($user_id, $query)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function get_related_products($category_id, $current_product_id, $limit = 4)
+function get_related_products($category_id, $current_product_id, $limit = 4): array
 {
     global $db;
     $stmt = $db->prepare('SELECT p.*, c.name as category_name 
@@ -462,7 +462,6 @@ function get_related_products($category_id, $current_product_id, $limit = 4)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-//make a function to dump data like laravel dd()
 function dd($data)
 {
     echo '<pre>';
