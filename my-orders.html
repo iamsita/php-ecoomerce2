@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecommerce website</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div id="header">
+      <div class="header-logo">
+        <a href="indext.html"><img src="images/logo.png" alt="" /></a>
+      </div>
+      <div class="header-list">
+        <nav class="header-list-nav">
+          <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="my-orders.html">My Orders</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <section class="orders-section">
+      <div class="orders-container">
+        <h2>My Orders</h2>
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#12345</td>
+              <td>2023-01-15</td>
+              <td>Shipped</td>
+              <td>$150</td>
+              <td><a href="#">View Details</a></td>
+            </tr>
+            <tr>
+              <td>#12346</td>
+              <td>2023-01-10</td>
+              <td>Processing</td>
+              <td>$200</td>
+              <td><a href="#">View Details</a></td>
+            </tr>
+            <tr>
+              <td>#12347</td>
+              <td>2023-01-05</td>
+              <td>Delivered</td>
+              <td>$100</td>
+              <td><a href="#">View Details</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <style>
+      .orders-section {
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f9f9f9;
+      }
+
+      .orders-container {
+        background: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 800px;
+      }
+
+      .orders-container h2 {
+        margin-bottom: 20px;
+        color: #333;
+        text-align: center;
+      }
+
+      .orders-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      .orders-table th,
+      .orders-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .orders-table th {
+        background-color: #f2f2f2;
+      }
+
+      .orders-table a {
+        color: #088178;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .orders-table a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-website",
+  "version": "1.0.0",
+  "description": "Ecommerce website",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "prettier": "^3.4.2"
+  }
+}

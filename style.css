@@ -1,0 +1,146 @@
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Header Styles */
+#header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 80px;
+  background-color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.header-logo img {
+  max-width: 150px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  height: 50px;
+}
+
+.header-logo img:hover {
+  transform: scale(1.05);
+}
+
+.header-list {
+  display: flex;
+  align-items: center;
+}
+
+.header-list-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.header-list-nav ul li a {
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  transition: 0.3s ease;
+}
+
+.header-list-nav ul li a:hover,
+.header-list-nav ul li a.active {
+  color: #088178;
+}
+
+/* Product Section Styles */
+.product-section {
+  padding: 40px 80px;
+}
+
+.pro-collection {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.product-cart {
+  background: #fff;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.product-cart:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-cart img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.product-cart span {
+  color: #606063;
+  font-size: 14px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.product-cart h4 {
+  color: #1a1a1a;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #088178;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  #header {
+    padding: 20px 40px;
+  }
+
+  .product-section {
+    padding: 30px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-list-nav ul {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  #header {
+    padding: 20px;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .header-list {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .header-list-nav ul {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .product-section {
+    padding: 20px;
+  }
+}
