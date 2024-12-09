@@ -1,6 +1,3 @@
-# Ignore uploaded product images
-assets/products/*
-!assets/products/.gitkeep
 
 # Ignore user uploads
 uploads/*
