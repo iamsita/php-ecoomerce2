@@ -31,3 +31,4 @@ Thumbs.db
 
 # Configuration files that might contain sensitive information
 vendor
+node_modules
