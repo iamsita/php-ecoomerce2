@@ -462,10 +462,13 @@ function get_related_products($category_id, $current_product_id, $limit = 4): ar
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function dd($data)
+function dd(...$data)
 {
-    echo '<pre>';
-    print_r($data);
-    echo '</pre>';
+    foreach ($data as $item) {
+
+        echo '<pre>';
+        print_r($item);
+        echo '</pre>';
+    }
     exit();
 }
