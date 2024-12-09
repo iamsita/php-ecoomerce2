@@ -29,18 +29,32 @@ $page = $_GET['page'] ?? 'home';
                 <li><a class="<?php echo $page === 'home' ? 'active' : ''; ?>" href="?page=home">Home</a></li>
                 <?php if (isset($_SESSION['user_id'])) { ?>
                     <li><a class="<?php echo $page === 'cart' ? 'active' : ''; ?>" href="?page=cart">Cart</a></li>
-                    <li><a class="<?php echo $page === 'orders' ? 'active' : ''; ?>" href="?page=orders">My Orders</a></li>
+                    <li><a class="<?php echo $page === 'orders' ? 'active' : ''; ?>" href="?page=orders">My Orders</a>
+                    </li>
                     <li><a class="<?php echo $page === 'logout' ? 'active' : ''; ?>" href="?page=logout">Logout</a></li>
                 <?php } else { ?>
                     <li><a class="<?php echo $page === 'login' ? 'active' : ''; ?>" href="?page=login">Login</a></li>
-                    <li><a class="<?php echo $page === 'register' ? 'active' : ''; ?>" href="?page=register">Register</a></li>
+                    <li><a class="<?php echo $page === 'register' ? 'active' : ''; ?>"
+                           href="?page=register">Register</a></li>
                 <?php } ?>
                 <?php if (isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'admin') { ?>
-                    <li><a class="<?php echo $page === 'admin' ? 'active' : ''; ?>" href="?page=admin">Admin Panel</a></li>
+                    <li><a class="<?php echo $page === 'admin' ? 'active' : ''; ?>" href="?page=admin">Admin Panel</a>
+                    </li>
                 <?php } ?>
             </ul>
         </nav>
     </div>
+</div>
+<div class="container">
+    <?php if (isset($_SESSION['message'])) { ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?php
+            echo $_SESSION['message'];
+        unset($_SESSION['message']); // Clear the message after displaying
+        ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php } ?>
 </div>
 <?php
 switch ($page) {

@@ -33,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<div class="container">
+<div class="container-lg  bg-light">
     <div class="card">
-        <div class="card-header">
+        <div class="card-header p-2">
             <h2>Shopping Cart</h2>
         </div>
         <div class="card-body">
@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <?php if (! empty($_SESSION['cart'])) { ?>
                 <form method="post">
-                    <table>
+                    <table >
                         <thead>
                             <tr>
                                 <th>Product</th>
@@ -89,10 +89,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </form>
             <?php } else { ?>
-                <p>Your cart is empty.</p>
-                <a href="index.php?page=products" class="btn btn-primary">Continue Shopping</a>
+                <a href="index.php?page=home" class="btn btn-primary mt-3">Continue Shopping</a>
             <?php } ?>
         </div>
     </div>
 </div>
 
+<style>
+    .card {
+        background-color: var(--light);
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+</style>

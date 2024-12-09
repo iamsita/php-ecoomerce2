@@ -1,9 +1,9 @@
 <?php
 
-function get_products($limit = null,$category_id = 0)
+function get_products($limit = null, $category_id = 0)
 {
     global $db;
-    $category_id = (int)$category_id;
+    $category_id = (int) $category_id;
     $sql = 'SELECT p.*, c.name as category_name 
             FROM products p 
             LEFT JOIN categories c ON p.category_id = c.id';
@@ -82,6 +82,7 @@ function get_cart_total()
 function create_order($order_data)
 {
     global $db;
+    var_dump($order_data);
 
     if (! isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
         return false;
@@ -96,16 +97,14 @@ function create_order($order_data)
             total_amount, 
             shipping_address, 
             phone, 
-            notes, 
             payment_method
-        ) VALUES (?, ?, ?, ?, ?, ?)');
+        ) VALUES (?, ?, ?, ?,  ?)');
 
         $stmt->execute([
             (int) $order_data['user_id'],
             (float) $order_data['total_amount'],
             (string) $order_data['shipping_address'],
             (string) $order_data['phone'],
-            (string) $order_data['notes'],
             (string) $order_data['payment_method'],
         ]);
 
@@ -354,6 +353,7 @@ function get_category($id)
 function get_user_orders($user_id)
 {
     global $db;
+
     $stmt = $db->prepare('SELECT * FROM orders WHERE user_id = ?');
     $stmt->execute([$user_id]);
 
@@ -383,10 +383,10 @@ function get_category_products_count($category_id)
     return $stmt->fetchColumn();
 }
 
-function search_products($query,$category_id = 0)
+function search_products($query, $category_id = 0)
 {
     global $db;
-    $category_id = (int)$category_id;
+    $category_id = (int) $category_id;
     $search = "%{$query}%";
     $sql = 'SELECT p.*, c.name as category_name 
             FROM products p 
@@ -461,4 +461,13 @@ function get_related_products($category_id, $current_product_id, $limit = 4)
     $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+//make a function to dump data like laravel dd()
+function dd($data)
+{
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';
+    exit();
 }

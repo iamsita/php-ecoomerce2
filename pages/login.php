@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (login_user($email, $password)) {
         $redirect = $_SESSION['redirect_after_login'] ?? 'index.php';
         unset($_SESSION['redirect_after_login']); // Clear the stored redirect
-        header('Location: ' . $redirect);
+        header('Location: '.$redirect);
         exit;
     } else {
         $error = 'Invalid email or password';
@@ -16,9 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 // Store the current page as redirect destination if it's not the login page
-if (!isset($_SESSION['redirect_after_login']) && isset($_SERVER['HTTP_REFERER'])) {
+if (! isset($_SESSION['redirect_after_login']) && isset($_SERVER['HTTP_REFERER'])) {
     $referer = $_SERVER['HTTP_REFERER'];
-    if (!strpos($referer, 'login') && !strpos($referer, 'register')) {
+    if (! strpos($referer, 'login') && ! strpos($referer, 'register')) {
         $_SESSION['redirect_after_login'] = $referer;
     }
 }
