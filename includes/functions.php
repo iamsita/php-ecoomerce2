@@ -419,14 +419,13 @@ function search_orders($query)
 {
     global $db;
     $search = "%{$query}%";
-    $stmt = $db->prepare('SELECT o.*, u.username, u.email 
+    $stmt = $db->prepare('SELECT o.*, u.email 
                          FROM orders o 
                          JOIN users u ON o.user_id = u.id 
                          WHERE o.id LIKE ? 
-                         OR u.username LIKE ? 
                          OR u.email LIKE ? 
                          OR o.phone LIKE ?');
-    $stmt->execute([$search, $search, $search, $search]);
+    $stmt->execute([$search, $search,  $search]);
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }

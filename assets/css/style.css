@@ -154,6 +154,7 @@
     background-color: var(--secondary);
     color: white;
     font-size: 1.5em;
+    padding: 1rem;
 }
 
 .card-body {
@@ -505,4 +506,40 @@ th, td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
+}
+
+.row{
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-md-3{
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.col-md-9{
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.col-md-4{
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+}
+
+.col-md-8{
+  flex: 0 0 66.666667%;
+  max-width: 66.666667%;
+}
+.col-12{
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+
+.p-5{
+  padding: 1rem;
 }
