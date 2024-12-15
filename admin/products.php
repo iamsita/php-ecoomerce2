@@ -21,15 +21,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['add_product'])) {
             if (add_product($name, $category_id, $description, $price, $image)) {
                 $message = 'Product added successfully';
+                header('Location: index.php?page=admin&admin_page=products');
+                exit;
             } else {
                 $message = 'Error adding product';
+                header('Location: index.php?page=admin&admin_page=products');
+                exit;
             }
         } elseif (isset($_POST['edit_product'])) {
             if (update_product($_POST['id'], $name, $category_id, $description, $price, $image)) {
+                $message = 'Product updated successfully';
                 header('Location: index.php?page=admin&admin_page=products');
                 exit;
             } else {
                 $message = 'Error updating product';
+                header('Location: index.php?page=admin&admin_page=products');
+                exit;
             }
         }
     }
@@ -38,6 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 if (isset($_GET['delete']) && is_numeric($_GET['delete'])) {
     if (delete_product($_GET['delete'])) {
         $message = 'Product deleted successfully';
+        header('Location: index.php?page=admin&admin_page=products');
+        exit;
     }
 }
 
