@@ -77,14 +77,14 @@ $products = $search_query ? search_products($search_query) : get_products();
             <?php if ($edit_product) { ?>
                 <input type="hidden" name="id" value="<?php echo $edit_product['id']; ?>">
             <?php } ?>
-            
+
             <div class="row">
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label>Product Name</label>
-                        <input type="text" name="name" class="form-control" 
-                               value="<?php echo $edit_product ? htmlspecialchars($edit_product['name']) : ''; ?>" 
-                               required>
+                        <input type="text" name="name" class="form-control"
+                            value="<?php echo $edit_product ? htmlspecialchars($edit_product['name']) : ''; ?>"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label>Category</label>
@@ -104,22 +104,22 @@ $products = $search_query ? search_products($search_query) : get_products();
                     </div>
                     <div class="mb-3">
                         <label>Price</label>
-                        <input type="number" name="price" class="form-control" step="0.01" 
-                               value="<?php echo $edit_product ? $edit_product['price'] : ''; ?>" 
-                               required>
+                        <input type="number" name="price" class="form-control" step="0.01"
+                            value="<?php echo $edit_product ? $edit_product['price'] : ''; ?>"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label>Image</label>
                         <input type="file" name="image" class="form-control">
                         <?php if ($edit_product && $edit_product['image']) { ?>
                             <div class="mt-2">
-                                <img src="<?php echo htmlspecialchars($edit_product['image']); ?>" 
-                                     alt="Current image" class="img-thumbnail" style="max-width: 200px;">
+                                <img src="<?php echo htmlspecialchars($edit_product['image']); ?>"
+                                    alt="Current image" class="img-thumbnail" style="max-width: 200px;">
                             </div>
                         <?php } ?>
                     </div>
-                    <button type="submit" name="<?php echo $edit_product ? 'edit_product' : 'add_product'; ?>" 
-                            class="btn btn-primary">
+                    <button type="submit" name="<?php echo $edit_product ? 'edit_product' : 'add_product'; ?>"
+                        class="btn btn-primary">
                         <?php echo $edit_product ? 'Update Product' : 'Add Product'; ?>
                     </button>
                 </div>
@@ -140,28 +140,28 @@ $products = $search_query ? search_products($search_query) : get_products();
                 </thead>
                 <tbody>
                     <?php foreach ($products as $product) { ?>
-                    <tr>
-                        <td><?php echo $product['id']; ?></td>
-                        <td>
-                            <?php if ($product['image']) { ?>
-                                <img height="100px" width="100px" src="<?php echo htmlspecialchars($product['image']); ?>" 
-                                     alt="" class="product-thumbnail">
-                            <?php } ?>
-                        </td>
-                        <td><?php echo htmlspecialchars($product['name']); ?></td>
-                        <td><?php echo htmlspecialchars($product['category_name']); ?></td>
-                        <td>$<?php echo number_format($product['price'], 2); ?></td>
-                        <td>
-                            <a href="?page=admin&admin_page=products&action=edit&id=<?php echo $product['id']; ?>" 
-                               class="btn btn-sm btn-primary">Edit</a>
-                            <a href="?page=admin&admin_page=products&delete=<?php echo $product['id']; ?>" 
-                               class="btn btn-sm btn-danger" 
-                               onclick="return confirm('Are you sure?')">Delete</a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td><?php echo $product['id']; ?></td>
+                            <td>
+                                <?php if ($product['image']) { ?>
+                                    <img height="100px" width="100px" src="<?php echo htmlspecialchars($product['image']); ?>"
+                                        alt="" class="product-thumbnail">
+                                <?php } ?>
+                            </td>
+                            <td><?php echo htmlspecialchars($product['name']); ?></td>
+                            <td><?php echo htmlspecialchars($product['category_name']); ?></td>
+                            <td>$<?php echo number_format($product['price'], 2); ?></td>
+                            <td>
+                                <a href="?page=admin&admin_page=products&action=edit&id=<?php echo $product['id']; ?>"
+                                    class="btn btn-sm btn-primary">Edit</a>
+                                <a href="?page=admin&admin_page=products&delete=<?php echo $product['id']; ?>"
+                                    class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure?')">Delete</a>
+                            </td>
+                        </tr>
                     <?php } ?>
                 </tbody>
             </table>
         <?php } ?>
     </div>
-</div> 
+</div>
