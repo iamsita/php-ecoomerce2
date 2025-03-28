@@ -8,10 +8,10 @@ function get_products($limit = null, $category_id = 0): array
             FROM products p 
             LEFT JOIN categories c ON p.category_id = c.id';
     if ($category_id > 0) {
-        $sql .= ' WHERE p.category_id = ' . (int) $category_id;
+        $sql .= ' WHERE p.category_id = '.(int) $category_id;
     }
     if ($limit) {
-        $sql .= ' LIMIT ' . (int) $limit;
+        $sql .= ' LIMIT '.(int) $limit;
     }
     $stmt = $db->query($sql);
 
@@ -326,13 +326,13 @@ function handle_image_upload($image_file)
     }
 
     // Generate simple filename: product_timestamp.extension
-    $filename = 'product_' . time() . '.' . $ext;
+    $filename = 'product_'.time().'.'.$ext;
 
     // Full server path for moving the file
-    $target_path = $upload_dir . $filename;
+    $target_path = $upload_dir.$filename;
 
     // URL path for database storage
-    $db_path = '/' . $target_path; // Add leading slash for URL path
+    $db_path = '/'.$target_path; // Add leading slash for URL path
 
     if (move_uploaded_file($image_file['tmp_name'], $target_path)) {
         return $db_path; // Return URL path starting with /assets/...
